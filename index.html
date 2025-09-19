@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing: An Interactive Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+             font-family: 'Poppins', sans-serif;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .sidebar-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+        .sidebar-link.active {
+            color: #6366f1;
+            font-weight: 600;
+            border-left-color: #6366f1;
+            background-color: #eef2ff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f8fafc;
+        }
+        /* Styles for Mind Map Lists */
+        .mindmap-list { list-style: none; padding-left: 0; }
+        .mindmap-list li { position: relative; padding-left: 25px; margin-top: 8px; }
+        .mindmap-list li::before {
+            content: ''; position: absolute; left: 0; top: 12px;
+            border-top: 1px solid #cbd5e1; width: 18px; height: 1px;
+        }
+        .mindmap-list li::after {
+            content: ''; position: absolute; left: 0; top: -9px;
+            border-left: 1px solid #cbd5e1; width: 1px; height: 100%;
+        }
+        .mindmap-list > li { padding-left: 0; }
+        .mindmap-list > li::before, .mindmap-list > li::after { display: none; }
+        .mindmap-list ul { padding-left: 10px; }
+        .mindmap-list li:last-child::after { height: 21px; }
+
+        /* Styles for Flowcharts */
+        .flow-arrow {
+            color: #94a3b8;
+        }
+        .flow-box {
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+        }
+    </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed top-0 left-0 z-20 h-full w-64 bg-white border-r border-slate-200 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+            <div class="p-4 sticky top-0 bg-white border-b border-slate-200">
+                <h1 class="text-xl font-bold gradient-text">Cloud Study Guide</h1>
+            </div>
+            <nav class="mt-4 px-2 pb-4">
+                <!-- Chapter 1 Nav -->
+                <h2 class="px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Chapter 1</h2>
+                <ul class="space-y-1 mt-2">
+                    <li><a href="#ch1" class="sidebar-link block py-2 px-2 rounded-md text-slate-600 hover:bg-slate-100 font-semibold">Fundamentals</a></li>
+                    <li><a href="#ch1-1-1" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">1.1.1 Definition</a></li>
+                    <li><a href="#ch1-1-2" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">1.1.2 Characteristics</a></li>
+                    <li><a href="#ch1-2-1" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">1.2.1 Technologies</a></li>
+                    <li><a href="#ch1-2-2" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">1.2.2 Service Models</a></li>
+                    <li><a href="#ch1-2-3" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">1.2.3 Deployment Models</a></li>
+                    <li><a href="#ch1-3" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">1.3 Cloud Security Intro</a></li>
+                </ul>
+                <!-- Chapter 2 Nav -->
+                <h2 class="mt-4 px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Chapter 2</h2>
+                 <ul class="space-y-1 mt-2">
+                    <li><a href="#ch2" class="sidebar-link block py-2 px-2 rounded-md text-slate-600 hover:bg-slate-100 font-semibold">Data Management</a></li>
+                    <li><a href="#ch2-1" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">2.1 Classification</a></li>
+                    <li><a href="#ch2-2" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">2.2 Classification Levels</a></li>
+                    <li><a href="#ch2-3" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">2.3 Tagging</a></li>
+                    <li><a href="#ch2-4-1" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">2.4.1 Tokenization</a></li>
+                    <li><a href="#ch2-4-2" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">2.4.2 Encryption</a></li>
+                </ul>
+                <!-- Chapter 3 Nav -->
+                <h2 class="mt-4 px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Chapter 3</h2>
+                <ul class="space-y-1 mt-2">
+                    <li><a href="#ch3" class="sidebar-link block py-2 px-2 rounded-md text-slate-600 hover:bg-slate-100 font-semibold">Asset Management</a></li>
+                    <li><a href="#ch3-1" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">3.1 Asset Types</a></li>
+                    <li><a href="#ch3-2" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">3.2 Asset Pipeline</a></li>
+                    <li><a href="#ch3-3" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">3.3 Asset Tagging</a></li>
+                     <li><a href="#ch3-4" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">3.4 CSPM</a></li>
+                </ul>
+                <!-- Chapter 4 Nav -->
+                 <h2 class="mt-4 px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Chapter 4</h2>
+                <ul class="space-y-1 mt-2">
+                    <li><a href="#ch4" class="sidebar-link block py-2 px-2 rounded-md text-slate-600 hover:bg-slate-100 font-semibold">IAM</a></li>
+                    <li><a href="#ch4-1" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">4.1 IAM Lifecycle</a></li>
+                    <li><a href="#ch4-2" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">4.2 Request & Approve</a></li>
+                    <li><a href="#ch4-3" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">4.3 Core Actions</a></li>
+                    <li><a href="#ch4-4" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">4.4 Authentication</a></li>
+                    <li><a href="#ch4-5" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">4.5 Authorization</a></li>
+                    <li><a href="#ch4-6" class="sidebar-link block py-2 pl-6 pr-2 text-sm rounded-md text-slate-500 hover:bg-slate-100">4.6 Revalidation</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Mobile Header -->
+        <header class="md:hidden bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-slate-200 w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <h1 class="text-xl font-bold gradient-text">Cloud Study Guide</h1>
+                    <button id="menu-btn" class="p-2 rounded-md hover:bg-slate-100">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="md:ml-64 w-full p-4 sm:p-6 lg:p-8">
+            
+            <!-- CHAPTER 1: Cloud Computing Fundamentals -->
+            <section id="ch1" class="mb-20">
+                <div class="text-center mb-12">
+                    <p class="text-base font-semibold text-indigo-600">Chapter 1</p>
+                    <h2 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Cloud Computing Fundamentals</h2>
+                </div>
+                <div class="card p-4 sm:p-6 mb-12">
+                    <h3 class="font-semibold text-center mb-2">Chapter 1 Mind Map</h3>
+                    <div class="p-2 sm:p-4 text-sm sm:text-base">
+                        <ul class="mindmap-list">
+                            <li><strong class="text-base">Cloud Fundamentals</strong>
+                                <ul>
+                                    <li>1.1 What is Cloud?
+                                        <ul><li>1.1.1 Definition</li><li>1.1.2 Characteristics</li></ul>
+                                    </li>
+                                    <li>1.2 SPI Framework
+                                        <ul><li>1.2.1 Technologies</li><li>1.2.2 Service Models</li><li>1.2.3 Deployment Models</li></ul>
+                                    </li>
+                                    <li>1.3 Cloud Security Intro
+                                        <ul><li>Shared Responsibility</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="ch1-1-1" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-indigo-500 pl-4">1.1.1 Definition</h3>
+                <p class="text-slate-600 mb-4">Cloud computing is the on-demand availability of computing resources (like servers, storage, databases, networking, software) over the internet. Crucially, this happens without direct active management by the user, and it's almost always based on a **pay-as-you-go** pricing model. It allows users and companies to access data and applications from virtually anywhere with an internet connection. These services are offered and managed by cloud service providers like Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP).</p>
+                <div class="card p-6 mt-6">
+                    <p class="font-semibold text-slate-700">The Official NIST Definition Deconstructed:</p>
+                    <ul class="mt-4 space-y-3 text-slate-600">
+                        <li><strong>"Ubiquitous, convenient, on-demand network access..."</strong>: It's everywhere, it's easy, you get it when you want it, and you access it over the internet.</li>
+                        <li><strong>"Shared pool of configurable computing resources..."</strong>: A massive collection of servers, storage, etc., that can be programmatically assigned and shared among many users (multi-tenancy).</li>
+                        <li><strong>"Rapidly provisioned and released with minimal management..."</strong>: You can scale up for a traffic spike and then scale back down just as quickly, with minimal effort.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="ch1-1-2" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-indigo-500 pl-4">1.1.2 Essential Characteristics</h3>
+                <div class="space-y-6 mt-8">
+                    <div class="card p-5"><h5 class="text-lg font-bold">On-Demand Self-Service</h5><p class="text-slate-600">Users can provision resources like server time or storage automatically, without needing to email an IT administrator or wait for manual fulfillment. <br><strong>Analogy:</strong> Using a self-checkout at a grocery store instead of waiting for a cashier.</p></div>
+                    <div class="card p-5"><h5 class="text-lg font-bold">Broad Network Access</h5><p class="text-slate-600">Services are accessible via standard network mechanisms (e.g., browsers, APIs) and from a wide range of devices (laptops, phones). <br><strong>Analogy:</strong> Any standard web browser can access Google Docs, you don't need a special "Google Docs browser."</p></div>
+                    <div class="card p-5"><h5 class="text-lg font-bold">Resource Pooling</h5><p class="text-slate-600">The provider's resources are pooled to serve multiple customers in a multi-tenant model. Resources are dynamically assigned based on demand. You don't know the exact physical server your code is on, and you don't need to. <br><strong>Analogy:</strong> Residents in an apartment building share the building's main water supply, but each has their own secure apartment and tap.</p></div>
+                    <div class="card p-5"><h5 class="text-lg font-bold">Rapid Elasticity</h5><p class="text-slate-600">Resources can be scaled up or down rapidly, often automatically. To the user, the supply appears unlimited. <br><strong>Analogy:</strong> Your electricity supply. You can turn on one light or all the appliances in your house; the grid handles the load without you pre-booking the power.</p></div>
+                    <div class="card p-5"><h5 class="text-lg font-bold">Measured Service</h5><p class="text-slate-600">Usage is metered, controlled, and reported, providing transparency for both the provider and consumer. You pay for what you use. <br><strong>Analogy:</strong> A taxi meter that only charges for the distance you travel.</p></div>
+                </div>
+            </section>
+
+            <section id="ch1-2-1" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-indigo-500 pl-4">1.2.1 Relevant Technologies</h3>
+                 <div class="space-y-4">
+                     <details class="card p-4 cursor-pointer"><summary class="font-semibold text-lg">Virtualization</summary><p class="mt-2 text-slate-600">This is the core enabling technology. It abstracts physical hardware, allowing a single server to run multiple independent operating systems or applications. This is the foundation of resource pooling and IaaS.</p></details>
+                     <details class="card p-4 cursor-pointer"><summary class="font-semibold text-lg">Service-Oriented Architecture (SOA)</summary><p class="mt-2 text-slate-600">An architectural approach where applications are built from distinct, independent services. This allows for scalability and integration, which is how massive cloud platforms are built.</p></details>
+                     <details class="card p-4 cursor-pointer"><summary class="font-semibold text-lg">Grid and Utility Computing</summary><p class="mt-2 text-slate-600">Grid computing involves connecting multiple computers to solve a common problem. Utility computing is the concept of providing computing as a metered service, like electricity. Cloud combines both ideas.</p></details>
+                     <details class="card p-4 cursor-pointer"><summary class="font-semibold text-lg">Distributed Computing</summary><p class="mt-2 text-slate-600">Spreading a single application or task across multiple computer systems. This is essential for the redundancy, fault tolerance, and scalability of the cloud.</p></details>
+                     <details class="card p-4 cursor-pointer"><summary class="font-semibold text-lg">API-based Access</summary><p class="mt-2 text-slate-600">APIs (Application Programming Interfaces) provide a flexible, programmable way to access and manage cloud services, enabling automation and the "Infrastructure as Code" (IaC) movement.</p></details>
+                </div>
+            </section>
+
+            <section id="ch1-2-2" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-indigo-500 pl-4">1.2.2 Cloud Service Delivery Models</h3>
+                <div class="space-y-8">
+                    <div class="card p-6"><h4 class="text-2xl font-bold text-blue-700">IaaS (Infrastructure as a Service)</h4><p class="mt-2">Provides virtualized hardware resources like VMs, storage, and networks. It offers the most control and flexibility. <strong>Examples:</strong> Amazon EC2, Google Compute Engine, Azure VMs.</p>
+                        <ul class="mt-4 list-disc list-inside text-slate-600 text-sm space-y-2"><li><strong>Pros:</strong> Customizable, complete control, pay-per-use.</li><li><strong>Security Spotlight:</strong> You are responsible for almost everything: securing the VM operating system, patching, network access rules, and monitoring.</li></ul></div>
+                    <div class="card p-6"><h4 class="text-2xl font-bold text-yellow-600">PaaS (Platform as a Service)</h4><p class="mt-2">Provides a platform and environment to develop, test, and deploy applications, so developers don't have to worry about the underlying infrastructure. <strong>Examples:</strong> Google App Engine, Heroku, Azure App Services.</p>
+                        <ul class="mt-4 list-disc list-inside text-slate-600 text-sm space-y-2"><li><strong>Pros:</strong> Speeds up development, scalable, cost-efficient.</li><li><strong>Security Spotlight:</strong> A shared responsibility. The provider secures the platform, but you must secure your application code, dependencies, and configurations.</li></ul></div>
+                    <div class="card p-6"><h4 class="text-2xl font-bold text-green-600">SaaS (Software as a Service)</h4><p class="mt-2">Provides ready-to-use software applications over the internet, with no need to install or manage anything. <strong>Examples:</strong> Gmail, Microsoft 365, Zoom.</p>
+                        <ul class="mt-4 list-disc list-inside text-slate-600 text-sm space-y-2"><li><strong>Pros:</strong> Easy to use, reduces management overhead, subscription-based.</li><li><strong>Security Spotlight:</strong> You have the least control. Your primary concerns are data confidentiality, user access control (who can use it), and ensuring the provider meets your compliance needs.</li></ul></div>
+                </div>
+            </section>
+            
+            <section id="ch1-2-3" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-indigo-500 pl-4">1.2.3 Cloud Deployment Models</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="card p-6"><h4 class="text-xl font-bold">Public Cloud</h4><p class="text-slate-600 mt-2">Services offered by third-party providers (AWS, Azure) over the public internet to multiple organizations. Highly cost-effective due to shared infrastructure. <strong>Use Case:</strong> Websites, email services, online storage for non-sensitive data.</p></div>
+                    <div class="card p-6"><h4 class="text-xl font-bold">Private Cloud</h4><p class="text-slate-600 mt-2">Infrastructure used exclusively by a single organization. Can be hosted on-premises or externally. Offers the greatest control, customization, and security. <strong>Use Case:</strong> Financial institutions, government agencies with strict data sovereignty rules.</p></div>
+                    <div class="card p-6"><h4 class="text-xl font-bold">Hybrid Cloud</h4><p class="text-slate-600 mt-2">A combination of public and private clouds, allowing data and applications to move between them. Offers flexibility, scalability, and security. <strong>Use Case:</strong> Storing sensitive customer data on a private cloud while using a public cloud for a scalable e-commerce website.</p></div>
+                    <div class="card p-6"><h4 class="text-xl font-bold">Community Cloud</h4><p class="text-slate-600 mt-2">Infrastructure is shared by several organizations with common concerns (e.g., compliance, mission). <strong>Use Case:</strong> A group of hospitals sharing a cloud environment that is HIPAA compliant for patient records.</p></div>
+                </div>
+            </section>
+            
+            <section id="ch1-3" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-indigo-500 pl-4">1.3 Introduction to Cloud Security</h3>
+                <p class="text-slate-600 mb-4">Cloud security is a collection of policies, technologies, applications, and controls that protect cloud-based systems, data, and infrastructure. It's a sub-domain of cybersecurity, but with unique challenges due to the dynamic and on-demand nature of cloud environments. The most fundamental concept to understand is the **Shared Responsibility Model**.</p>
+                <div class="card p-6 mt-6">
+                    <h5 class="text-lg font-bold">The Shared Responsibility Model</h5>
+                    <p class="text-slate-600 mt-2">This model defines the division of security obligations between the cloud service provider (CSP) and the customer. The CSP is always responsible for the security **OF** the cloud, while the customer is always responsible for security **IN** the cloud.</p>
+                    <div class="mt-4 flex flex-col md:flex-row gap-0">
+                        <div class="flex-1 bg-indigo-50 border-2 border-indigo-200 p-4 rounded-t-lg md:rounded-tr-none md:rounded-l-lg">
+                            <h6 class="font-bold text-indigo-800 text-center">You (Customer): Security IN the Cloud</h6>
+                            <ul class="mt-2 space-y-2 text-sm text-indigo-700 text-center"><li class="p-2 bg-white/50 rounded">Data</li><li class="p-2 bg-white/50 rounded">Applications</li><li class="p-2 bg-white/50 rounded">Identity & Access</li><li class="p-2 bg-white/50 rounded">Operating System</li><li class="p-2 bg-white/50 rounded">Network Controls</li></ul>
+                        </div>
+                        <div class="flex-1 bg-slate-100 border-2 border-slate-300 p-4 rounded-b-lg md:rounded-bl-none md:rounded-r-lg">
+                            <h6 class="font-bold text-slate-800 text-center">Provider (CSP): Security OF the Cloud</h6>
+                            <ul class="mt-2 space-y-2 text-sm text-slate-700 text-center"><li class="p-2 bg-white/50 rounded">Compute & Storage Hardware</li><li class="p-2 bg-white/50 rounded">Databases (Physical)</li><li class="p-2 bg-white/50 rounded">Networking (Physical)</li><li class="p-2 bg-white/50 rounded">Physical Datacenters</li></ul>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center mt-2 italic">The line of responsibility moves up or down depending on the service model (IaaS, PaaS, SaaS).</p>
+                </div>
+            </section>
+
+            <!-- CHAPTER 2: Data Asset Management & Protection -->
+            <section id="ch2" class="mb-20 pt-16">
+                <div class="text-center mb-12"><p class="text-base font-semibold text-teal-600">Chapter 2</p><h2 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Data Asset Management & Protection</h2></div>
+                <div class="card p-4 sm:p-6 mb-12">
+                    <h3 class="font-semibold text-center mb-2">Chapter 2 Mind Map</h3>
+                    <div class="p-2 sm:p-4 text-sm sm:text-base">
+                        <ul class="mindmap-list">
+                            <li><strong class="text-base">Data Management</strong>
+                                <ul>
+                                    <li>2.1 Identification & Classification</li>
+                                    <li>2.2 Classification Levels</li>
+                                    <li>2.3 Tagging</li>
+                                    <li>2.4 Data Protection
+                                        <ul><li>2.4.1 Tokenization</li><li>2.4.2 Encryption</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section id="ch2-1" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-teal-500 pl-4">2.1 Data Identification & Classification</h3>
+                <p class="text-slate-600 mb-4">This foundational process involves two key steps: discovering where your data is and then labeling it based on its sensitivity and importance.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="card p-5">
+                        <h5 class="font-bold">Data Identification</h5>
+                        <p class="text-sm mt-2">The process of discovering and recognizing sensitive or critical data. It answers: <strong>"Where is my data?"</strong> This includes locating data stored on-premises, in various cloud services (S3, RDS, etc.), and on user endpoints.</p>
+                    </div>
+                    <div class="card p-5">
+                        <h5 class="font-bold">Data Classification</h5>
+                        <p class="text-sm mt-2">The process of organizing data into categories for easier protection. It answers: <strong>"How important is this data?"</strong> Classification is usually based on sensitivity, compliance needs (GDPR, HIPAA), and business impact.</p>
+                    </div>
+                </div>
+                <div class="card p-5 mt-6 bg-teal-50 border-teal-200"><h5 class="font-bold text-teal-800">Purpose & Benefits</h5><p class="mt-2 text-sm text-teal-700">The primary goal is to enable better risk management. By knowing what data you have and how sensitive it is, you can prioritize security measures, apply appropriate access controls, and ensure you meet regulatory compliance.</p></div>
+            </section>
+            <section id="ch2-2" class="mb-20">
+                 <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-teal-500 pl-4">2.2 Example Data Classification Levels</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                    <div class="card p-4 bg-green-50 border-green-200"><h5 class="font-bold text-green-800">Public</h5><p class="text-sm text-green-700">No damage if disclosed. E.g., Marketing material, public web content.</p></div>
+                    <div class="card p-4 bg-blue-50 border-blue-200"><h5 class="font-bold text-blue-800">Internal Use Only</h5><p class="text-sm text-blue-700">Moderate risk if exposed. E.g., internal policies, operational data.</p></div>
+                    <div class="card p-4 bg-yellow-50 border-yellow-200"><h5 class="font-bold text-yellow-800">Confidential</h5><p class="text-sm text-yellow-700">Could cause harm. E.g., employee records, project plans.</p></div>
+                    <div class="card p-4 bg-red-50 border-red-200"><h5 class="font-bold text-red-800">Restricted</h5><p class="text-sm text-red-700">Severe impact if leaked. E.g., financial records, trade secrets, encryption keys.</p></div>
+                </div>
+            </section>
+            <section id="ch2-3" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-teal-500 pl-4">2.3 Data Asset Management in Cloud – Tagging</h3>
+                 <p class="text-slate-600 mb-4">Tagging is the practice of attaching metadata (in key-value pairs) to your cloud resources. It acts like a label maker for your entire cloud environment, linking your classification efforts to actual resources.</p>
+                 <div class="card p-4 bg-slate-800 text-white font-mono text-sm rounded-lg"><pre><code># Example Tags for an S3 Bucket
+{
+  "Environment": "Production",
+  "Owner": "HR-Department",
+  "Data-Classification": "Confidential",
+  "Cost-Center": "HR-123"
+}</code></pre></div>
+                 <p class="mt-4 font-semibold">Tags help with:</p>
+                 <ul class="list-disc list-inside text-slate-600 space-y-1 mt-2">
+                     <li><strong>Organizing Resources:</strong> Grouping assets by project or application.</li>
+                     <li><strong>Identifying Ownership:</strong> Quickly see which team is responsible for a resource.</li>
+                     <li><strong>Automating Policies:</strong> For example, "Deny public access to any resource tagged 'Data-Classification: Confidential'."</li>
+                     <li><strong>Tracking Cost:</strong> Filter billing reports by tags to understand costs per department.</li>
+                 </ul>
+            </section>
+            <section id="ch2-4-1" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-teal-500 pl-4">2.4.1 Tokenization</h3>
+                 <p class="text-slate-600 mb-4">Tokenization replaces sensitive data with a non-sensitive equivalent, a "token," that has no exploitable value outside its system. The real data is stored securely in a separate, highly protected database called a token vault.</p>
+                 <div class="card p-6 flex flex-col sm:flex-row items-center justify-center sm:space-x-4 space-y-4 sm:space-y-0">
+                    <div class="text-center p-3 flow-box rounded-md"><p class="font-mono text-sm">4111...</p><p class="text-xs font-semibold">Sensitive Data</p></div>
+                    <i data-lucide="arrow-right" class="w-8 h-8 flow-arrow transform sm:rotate-0 rotate-90"></i>
+                    <div class="p-3 flow-box rounded-lg text-center bg-teal-50 border-teal-200"><i data-lucide="shield-check" class="w-8 h-8 mx-auto text-teal-600"></i><p class="text-xs font-semibold mt-1">Tokenization System</p></div>
+                    <i data-lucide="arrow-right" class="w-8 h-8 flow-arrow transform sm:rotate-0 rotate-90"></i>
+                    <div class="text-center p-3 flow-box rounded-md"><p class="font-mono text-sm">TKN123...</p><p class="text-xs font-semibold">Token</p></div>
+                </div>
+                 <ul class="mt-4 list-disc list-inside text-slate-600 text-sm space-y-2">
+                     <li><strong>Benefits:</strong> Reduces exposure of sensitive data, helps achieve compliance (like PCI-DSS), simplifies access controls.</li>
+                     <li><strong>Limitation:</strong> The security of the entire system depends on the security of the token vault.</li>
+                </ul>
+            </section>
+             <section id="ch2-4-2" class="mb-20">
+                 <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-teal-500 pl-4">2.4.2 Encryption: The Three States of Data</h3>
+                 <div class="grid md:grid-cols-3 gap-6">
+                    <div class="card p-6"><h5 class="font-bold">Data In Motion</h5><p class="text-sm text-slate-600 mt-2">Data traveling across networks (e.g., sending an email). <strong>Protection Methods:</strong> SSL/TLS (HTTPS), VPN tunnels, Secure APIs.</p></div>
+                    <div class="card p-6"><h5 class="font-bold">Data At Rest</h5><p class="text-sm text-slate-600 mt-2">Data stored on disks or in databases. <strong>Protection Methods:</strong> AES-256 encryption, disk encryption (BitLocker), cloud-native services (AWS KMS, Azure Key Vault).</p></div>
+                    <div class="card p-6"><h5 class="font-bold">Data In Use</h5><p class="text-sm text-slate-600 mt-2">Data being processed in memory (RAM). This is the most challenging state to protect. <strong>Protection Methods:</strong> Confidential computing, secure enclaves (Intel SGX), homomorphic encryption.</p></div>
+                 </div>
+                 <div class="card p-5 mt-6 bg-indigo-50 border-indigo-200"><h5 class="font-bold text-indigo-800">Security Spotlight: Key Management & DLP</h5><ul class="mt-2 text-sm text-indigo-700 list-disc list-inside space-y-2"><li><strong>Key Management:</strong> Encryption is only as strong as the security of its keys. Use a dedicated Key Management Service (KMS) like AWS KMS or Azure Key Vault to create, store, and rotate encryption keys securely.</li><li><strong>Data Loss Prevention (DLP):</strong> These tools scan cloud environments to discover sensitive data and can automatically block unauthorized attempts to exfiltrate (move) it outside your secure perimeter.</li><li><strong>Data Sovereignty:</strong> This is the concept that data is subject to the laws of the country in which it is located. When using the cloud, you must ensure your data is stored in regions that comply with your legal and regulatory requirements.</li></ul></div>
+            </section>
+            
+            <!-- CHAPTER 3: Cloud Asset Management & Protection -->
+            <section id="ch3" class="mb-20 pt-16">
+                <div class="text-center mb-12"><p class="text-base font-semibold text-sky-600">Chapter 3</p><h2 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Cloud Asset Management & Protection</h2></div>
+                 <div class="card p-4 sm:p-6 mb-12">
+                     <h3 class="font-semibold text-center mb-2">Chapter 3 Mind Map</h3>
+                     <div class="p-2 sm:p-4 text-sm sm:text-base">
+                         <ul class="mindmap-list">
+                             <li><strong class="text-base">Asset Management</strong>
+                                 <ul>
+                                     <li>3.1 Asset Types
+                                         <ul><li>Compute</li><li>Storage</li><li>Network</li></ul>
+                                     </li>
+                                     <li>3.2 Asset Pipeline
+                                         <ul><li>Procurement Leaks</li><li>Processing Leaks</li><li>Tooling Leaks</li><li>Finding Leaks</li></ul>
+                                     </li>
+                                     <li>3.3 Tagging</li>
+                                     <li>3.4 CSPM</li>
+                                 </ul>
+                             </li>
+                         </ul>
+                     </div>
+                </div>
+            </section>
+            <section id="ch3-1" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-sky-500 pl-4">3.1 Types of Cloud Assets</h3>
+                <p class="text-slate-600 mb-4">An "asset" is any resource or component used in your cloud environment. Proper management involves inventorying and securing these core building blocks.</p>
+                <div class="grid md:grid-cols-3 gap-6 mt-8">
+                    <div class="card p-6"><h5 class="font-bold">3.1.1 Compute Assets</h5><p class="text-sm text-slate-600 mt-2">Assets responsible for running applications and processing data. <strong>Examples:</strong> VMs (EC2), containers (Kubernetes), serverless functions (Lambda). <strong>Security:</strong> VM image hardening, regular patching, using security groups (firewalls).</p></div>
+                    <div class="card p-6"><h5 class="font-bold">3.1.2 Storage Assets</h5><p class="text-sm text-slate-600 mt-2">Assets that provide persistent data storage. <strong>Examples:</strong> Object storage (S3), block storage (EBS), file systems (EFS). <strong>Security:</strong> Encryption (at-rest/in-transit), access permissions, versioning, backups.</p></div>
+                    <div class="card p-6"><h5 class="font-bold">3.1.3 Network Assets</h5><p class="text-sm text-slate-600 mt-2">Assets that connect your cloud systems securely. <strong>Examples:</strong> VPCs, subnets, firewalls, load balancers, gateways. <strong>Security:</strong> Network segmentation, restrictive firewall rules, IP whitelisting.</p></div>
+                </div>
+            </section>
+            <section id="ch3-2" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-sky-500 pl-4">3.2 Asset Management Pipeline & Leaks</h3>
+                <p class="text-slate-600 mb-4">This pipeline represents the lifecycle of a cloud asset. "Leaks" are vulnerabilities or misconfigurations that can occur at any stage.</p>
+                <div class="card p-6 flex flex-col sm:flex-row items-center justify-around space-y-4 sm:space-y-0">
+                    <div class="p-3 flow-box rounded-md text-center">Procurement</div>
+                    <i data-lucide="arrow-right" class="w-8 h-8 flow-arrow transform sm:rotate-0 rotate-90"></i>
+                    <div class="p-3 flow-box rounded-md text-center">Processing</div>
+                    <i data-lucide="arrow-right" class="w-8 h-8 flow-arrow transform sm:rotate-0 rotate-90"></i>
+                    <div class="p-3 flow-box rounded-md text-center">Tooling</div>
+                    <i data-lucide="arrow-right" class="w-8 h-8 flow-arrow transform sm:rotate-0 rotate-90"></i>
+                    <div class="p-3 flow-box rounded-md text-center">Finding</div>
+                </div>
+                <div class="space-y-4 mt-6">
+                    <div class="card p-4"><h5 class="font-semibold">3.2.1 Procurement Leaks</h5><p class="text-sm text-slate-600">Mistakes made during asset acquisition/setup. <strong>Examples:</strong> Provisioning a VM with an outdated, unpatched image; creating an S3 bucket that is public by default. <strong>Prevention:</strong> Use approved, secured templates (Infrastructure as Code).</p></div>
+                    <div class="card p-4"><h5 class="font-semibold">3.2.2 Processing Leaks</h5><p class="text-sm text-slate-600">Vulnerabilities during the usage phase. <strong>Examples:</strong> An application bug that leads to data exposure; an admin granting overly permissive access. <strong>Prevention:</strong> Regular audits, strong IAM policies, runtime protection tools.</p></div>
+                    <div class="card p-4"><h5 class="font-semibold">3.2.3 Tooling Leaks</h5><p class="text-sm text-slate-600">Flaws in the tools used for management or monitoring. <strong>Examples:</strong> A CI/CD pipeline with exposed secrets; an insecure third-party monitoring tool. <strong>Prevention:</strong> Secure your toolchains, use secrets management.</p></div>
+                    <div class="card p-4"><h5 class="font-semibold">3.2.4 Finding Leaks</h5><p class="text-sm text-slate-600">Challenges in discovering or inventorying all assets. <strong>Example:</strong> "Shadow IT," where a developer spins up a server for a test project without telling anyone, and it gets forgotten but remains active. <strong>Prevention:</strong> Use cloud asset discovery tools and a CMDB.</p></div>
+                </div>
+            </section>
+            <section id="ch3-3" class="mb-20">
+                 <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-sky-500 pl-4">3.3 Tagging Cloud Assets</h3>
+                 <p class="text-slate-600 mb-4">Just as with data, tagging assets is crucial. It helps organize, track, secure, and optimize resources. A consistent tagging strategy is a hallmark of a mature cloud environment.</p>
+                 <div class="card p-5"><h5 class="font-bold text-sky-800">Best Practices for Tagging</h5><ul class="mt-2 text-sm text-sky-700 list-disc list-inside space-y-1"><li><strong>Define a Global Tagging Policy:</strong> Create a standard set of required tags (e.g., `owner`, `environment`, `cost-center`) and make it company policy.</li><li><strong>Automate Tagging:</strong> Use Infrastructure as Code (IaC) tools like Terraform or CloudFormation to enforce tagging on resource creation.</li><li><strong>Enforce Through Policies:</strong> Use services like AWS Config Rules or Azure Policy to identify or even terminate non-compliant (untagged) resources.</li></ul></div>
+            </section>
+            <section id="ch3-4" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-sky-500 pl-4">3.4 Cloud Security Posture Management (CSPM)</h3>
+                <p class="text-slate-600 mb-4">CSPM is an emerging category of security tools that continuously monitor cloud environments for misconfigurations and compliance risks. In a large, dynamic cloud environment, it's impossible to check everything manually. CSPM automates this process.</p>
+                <div class="card p-5">
+                    <h5 class="font-bold">What CSPM Tools Do:</h5>
+                    <ul class="mt-2 text-sm text-slate-600 list-disc list-inside space-y-1">
+                        <li><strong>Discover Assets:</strong> Continuously scan your cloud accounts to find all assets.</li>
+                        <li><strong>Detect Misconfigurations:</strong> Compare your asset configurations against a baseline of security best practices (e.g., CIS Benchmarks, NIST).</li>
+                        <li><strong>Alert on Risks:</strong> Automatically generate alerts for issues like public S3 buckets, overly permissive IAM roles, or unencrypted databases.</li>
+                        <li><strong>Enable Remediation:</strong> Some tools offer automated remediation to fix common issues.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CHAPTER 4: Identity & Access Management (IAM) -->
+            <section id="ch4" class="mb-20 pt-16">
+                <div class="text-center mb-12"><p class="text-base font-semibold text-rose-600">Chapter 4</p><h2 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Identity & Access Management (IAM)</h2></div>
+                 <div class="card p-4 sm:p-6 mb-12">
+                     <h3 class="font-semibold text-center mb-2">Chapter 4 Mind Map</h3>
+                     <div class="p-2 sm:p-4 text-sm sm:text-base">
+                         <ul class="mindmap-list">
+                             <li><strong class="text-base">IAM</strong>
+                                 <ul>
+                                     <li>4.1-4.3 Lifecycle
+                                         <ul><li>Creation/Provisioning</li><li>Maintenance</li><li>De-provisioning</li></ul>
+                                     </li>
+                                     <li>4.4 Authentication
+                                         <ul><li>"Who are you?"</li><li>MFA</li></ul>
+                                     </li>
+                                     <li>4.5 Authorization
+                                         <ul><li>"What can you do?"</li><li>RBAC & Zero Trust</li></ul>
+                                     </li>
+                                     <li>4.6 Revalidate</li>
+                                 </ul>
+                             </li>
+                         </ul>
+                     </div>
+                </div>
+            </section>
+            <section id="ch4-1" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-rose-500 pl-4">4.1 Life Cycle for Identity and Access</h3>
+                <p class="text-slate-600 mb-4">The IAM lifecycle is the end-to-end, automated process of managing a user's identity and access from their first day to their last, ensuring security and least privilege.</p>
+                <div class="space-y-4">
+                    <div class="card p-4"><h5 class="font-semibold">Identity Creation & Provisioning</h5><p class="text-sm text-slate-600">When a user joins, a unique identity is created and initial access is provisioned based on their role.</p></div>
+                    <div class="card p-4"><h5 class="font-semibold">Maintenance</h5><p class="text-sm text-slate-600">As a user changes roles or projects, their access is updated accordingly (granting new permissions, revoking old ones).</p></div>
+                    <div class="card p-4"><h5 class="font-semibold">De-provisioning</h5><p class="text-sm text-slate-600">When a user leaves, their access is immediately and completely removed to prevent unauthorized access.</p></div>
+                </div>
+            </section>
+             <section id="ch4-2" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-rose-500 pl-4">4.2 Request, Approve</h3>
+                <p class="text-slate-600 mb-4">This is the formal process for granting access. It creates an audit trail and ensures accountability.</p>
+                <div class="card p-6">
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 font-bold">1</span>
+                            <p><strong>User:</strong> Requests access to a specific system or data.</p>
+                        </div>
+                        <div class="h-8 w-px bg-slate-300 ml-5"></div>
+                        <div class="flex items-center space-x-4">
+                             <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 font-bold">2</span>
+                            <p><strong>Manager/Owner:</strong> Reviews the request based on role and need, then approves or denies it.</p>
+                        </div>
+                         <div class="h-8 w-px bg-slate-300 ml-5"></div>
+                        <div class="flex items-center space-x-4">
+                            <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 font-bold">3</span>
+                            <p><strong>System:</strong> Automatically provisions the approved access.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-4 text-slate-600">The approval workflow can be automated and depend on the user's role, the sensitivity of the resource, and whether access is temporary or permanent.</p>
+            </section>
+             <section id="ch4-3" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-rose-500 pl-4">4.3 Create, Delete, Grant, Revoke</h3>
+                <p class="text-slate-600 mb-4">These are the four fundamental actions in IAM systems that are performed by administrators (or automated systems).</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="card p-4"><h5 class="font-bold">Create/Delete</h5><p class="text-sm">Refers to the identity itself. Creating a new user account or deleting it when they leave.</p></div>
+                    <div class="card p-4"><h5 class="font-bold">Grant/Revoke</h5><p class="text-sm">Refers to permissions. Granting a user access to a specific database or revoking it when no longer needed.</p></div>
+                </div>
+            </section>
+             <section id="ch4-4" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-rose-500 pl-4">4.4 Authentication</h3>
+                <p class="text-slate-600 mb-4">Authentication is the process of verifying a user is who they claim to be. It answers the question: <strong>"Who are you?"</strong></p>
+                <div class="card p-5 bg-rose-50 border-rose-200"><h5 class="font-bold text-rose-800">Security Spotlight: MFA is Non-Negotiable</h5><p class="mt-2 text-sm text-rose-700">In modern security, MFA is considered a baseline requirement, not an optional extra. Compromised credentials are the #1 cause of data breaches, and MFA is the single most effective control to prevent this.</p></div>
+                <div class="card p-5 mt-4"><h5 class="font-bold">Common Methods</h5><ul class="mt-2 text-sm list-disc list-inside"><li><strong>Password-based:</strong> The most common, but weakest form.</li><li><strong>Multi-Factor Authentication (MFA):</strong> Something you know (password) + something you have (phone app) or something you are (fingerprint). </li><li><strong>Biometric:</strong> Fingerprint, facial recognition.</li><li><strong>OAuth/OpenID:</strong> Using a third-party identity (e.g., "Login with Google").</li></ul></div>
+             </section>
+             <section id="ch4-5" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-rose-500 pl-4">4.5 Authorization</h3>
+                <p class="text-slate-600 mb-4">Once authenticated, authorization determines what actions the user is allowed to perform. It answers the question: <strong>"What can you do?"</strong> It is the key to enforcing the Principle of Least Privilege.</p>
+                 <div class="card p-5"><h5 class="font-bold">Popular Models</h5><ul class="mt-2 text-sm list-disc list-inside"><li><strong>Role-Based Access Control (RBAC):</strong> Access is granted based on a user's role (e.g., "Developer," "Auditor"). This is the most common model in cloud environments.</li><li><strong>Attribute-Based Access Control (ABAC):</strong> Access is granted based on attributes of the user, resource, and environment (e.g., "Allow access if user is a manager AND it's business hours AND data is not PII").</li></ul></div>
+                 <div class="card p-5 mt-4"><h5 class="font-bold">The Evolution: Zero Trust</h5><p class="text-sm text-slate-600 mt-2">Zero Trust is a modern security model built on the philosophy of "never trust, always verify." It assumes that threats exist both outside and inside the network. Access is granted on a per-session basis, is strictly enforced, and requires re-authentication frequently, regardless of where the user is located.</p></div>
+             </section>
+             <section id="ch4-6" class="mb-20">
+                <h3 class="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-rose-500 pl-4">4.6 Revalidate</h3>
+                <p class="text-slate-600 mb-4">Periodic revalidation (or attestation) of access rights ensures users only have the access they still need. This process is crucial for security and compliance, as it prevents "privilege creep"—where users accumulate unnecessary permissions over time.</p>
+                 <div class="card p-5"><h5 class="font-bold">The Revalidation Process</h5><ol class="mt-2 text-sm list-decimal list-inside"><li>A report is generated showing who has access to what.</li><li>A system owner or manager reviews the list.</li><li>They validate that each user's access is still required for their job.</li><li>Any outdated or risky permissions are revoked.</li></ol></div>
+             </section>
+
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        if (menuBtn && sidebar) {
+            menuBtn.addEventListener('click', () => { sidebar.classList.toggle('-translate-x-full'); });
+        }
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.sidebar-link');
+        const observer = new IntersectionObserver((entries) => {
+            let visibleSections = [];
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    visibleSections.push(entry.target.id);
+                }
+            });
+
+            if (visibleSections.length > 0) {
+                // Get the first visible section's ID
+                const activeId = visibleSections[0];
+                navLinks.forEach(link => {
+                    const linkHref = link.getAttribute('href').substring(1);
+                    if (linkHref === activeId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        }, { rootMargin: "0px 0px -80% 0px" });
+        sections.forEach(section => { observer.observe(section); });
+    </script>
+</body>
+</html>
+
